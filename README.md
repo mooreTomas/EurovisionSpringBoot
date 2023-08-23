@@ -1,4 +1,4 @@
-# Basic Spring Security Implementation
+# Spring Boot CRUD Application
 
 This project is a CRUD web application built using **Spring Boot** and **Thymeleaf**, with a local SQL database. It has also been fully localised using **Spring Internationalisation** (English and Irish).
 
