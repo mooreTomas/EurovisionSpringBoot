@@ -1,8 +1,7 @@
-# SD4_Assignment_One_Starter_2023
+# Basic Spring Security Implementation
 
-Document the development effort here :heart_eyes:
+This project is a CRUD web application built using **Spring Boot** and **Thymeleaf**, with a local SQL database. It has also been fully localised using **Spring Internationalisation** (English and Irish).
 
+ The SQL file contains information on all the history of Eurovision song contests, including information such as location, venue name etc.
 
-- basic readme to start off
--- first commit built structure of project
-- added functionality for search by country and search within date range of entrants table (found in brach commit)
+This database can be searched with various CRUD operations and parameters.
