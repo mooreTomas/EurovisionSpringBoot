@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html th:attr="locale=${en_IE}">
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title th:text="Entrants"></title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Style HTML Tables with CSS</title>
+  <link rel="stylesheet" type = "text/css" media = "all"
+        href="/css/main.css" th:ref="@{/css/main.css}" />
+</head>
+<body>
+<a href="viewAllEntrants" class="btn btn-primary" th:text="#{text.backToMain}"></a>
+<br>
+<br>
+
+
+<h1><strong th:text = "#{text.error}"/></h1>
+
+
+</body>
+
+
+
+</html>

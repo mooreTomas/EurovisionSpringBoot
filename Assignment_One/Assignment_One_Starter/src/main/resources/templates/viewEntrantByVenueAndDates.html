@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html th:attr="locale=${en_IE}">
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title th:text="Entrants"></title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Style HTML Tables with CSS</title>
+  <link rel="stylesheet" type = "text/css" media = "all"
+        href="/css/main.css" th:ref="@{/css/main.css}" />
+</head>
+<body>
+
+<span th:text="#{lang.change}"></span>:
+<select id="locales">
+  <option value=""></option>
+  <option value="en" th:text="#{lang.en}"></option>
+  <option value="ga" th:text="#{lang.ga}"></option>
+</select>
+
+<br>
+<br>
+<br>
+<a href="viewAllEntrants" class="btn btn-primary" th:text="#{text.backToMain}"></a>
+<br>
+<br>
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+<table class = "content-table">
+  <tr class = "active-row">
+    <th style="text-align:left"th:text="#{id}"></th>
+    <th style="text-align:left"th:text="#{hostCity}"></th>
+    <th style="text-align:left"th:text="#{dateOfFinal}"></th>
+    <th style="text-align:left"th:text="#{hostCountry}"></th>
+    <th style="text-align:left"th:text="#{artistCountry}"></th>
+    <th style="text-align:left"th:text="#{artist}"></th>
+    <th style="text-align:left"th:text="#{song}"></th>
+    <th style="text-align:left"th:text="#{points}"></th>
+    <th style="text-align:left"th:text="#{logo}"></th>
+
+
+
+  </tr>
+  <tr th:each="e: ${entrants}">
+
+    <td><a th:href="@{/drillDown(id=${e.id})}"> <span th:text="${e.id}"></span> </td>
+    <td><span th:text="${e.hostCity}"></span></td>
+    <td><span th:text="${#dates.format(e.dateOfFinal, 'dd/MM/yyyy')}"></span></td>
+    <td><span th:text="${e.hostCountry}"></span></td>
+    <td><span th:text="${e.artistCountry}"></span></td>
+    <td><span th:text="${e.artist}"></span></td>
+    <td><span th:text="${e.song}"></span></td>
+    <td><span th:text="${e.totalPoints}"></span></td>
+    <td> <img th:src="@{/assets/images/{logo}(logo=${e.logo})}"/> </td>
+
+
+
+  </tr>
+</table>
+
+<br>
+
+<br>
+
+
+<table class = "content-table">
+  <tr class = "active-row">
+    <th style="text-align:left"th:text="#{text.venueName}"></th>
+    <th style="text-align:left"th:text="#{capacity}"></th>
+    <th style="text-align:left"th:text="#{note}"></th>
+
+
+
+
+  </tr>
+  <tr th:each="v: ${venue}">
+
+    <td><span th:text="${v.name}"></span></td>
+    <td><span th:text="${v.capacity}"></span></td>
+    <td><span th:text="${v.note}"></span></td>
+
+
+
+
+  </tr>
+</table>
+
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#locales").change(function () {
+      var selectedOption = $('#locales').val();
+      if (selectedOption != ''){
+        window.location.replace('/viewAllEntrants' + '?lang=' + selectedOption);
+
+      }
+    });
+  });
+</script>

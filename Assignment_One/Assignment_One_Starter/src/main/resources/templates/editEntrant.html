@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title th:text="Entrants"></title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Style HTML Tables with CSS</title>
+  <link rel="stylesheet" type = "text/css" media = "all"
+        href="/css/main.css" th:ref="@{/css/main2.css}" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<br>
+<br>
+<br>
+
+
+<br>
+<br>
+
+
+<form th:action="@{/editEntrant}" th:object="${anEntrant}" method="post">
+  <table>
+    <tr>
+
+      <td><input type="hidden" th:field="*{id}" name="id"  readonly="true"/></td>
+      <td style="color:red"><span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" /></td>
+    </tr>
+    <tr>
+      <td><label th:text="#{artist}"></label></td>
+      <td><input type="text" th:field="*{artist}" name="artist"/></td>
+      <td style="color:red"><span th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}" /></td>
+    </tr>
+    <tr>
+      <td><label th:text="#{artistCountry}"></label></td>
+      <td><input type="text" th:field="*{artistCountry}" name="artistCountry"/></td>
+      <td style="color:red"><span th:if="${#fields.hasErrors('artistCountry')}" th:errors="*{artistCountry}" /></td>
+    </tr>
+    <tr>
+      <td><label th:text="#{dateOfFinal}" ></label></td>
+      <td><input type="text"   th:field="*{dateOfFinal}" name="dateOfFinal"/></td>
+      <td style="color:red"><span th:if="${#fields.hasErrors('dateOfFinal')}" th:errors="*{dateOfFinal}" /></td>
+    </tr>
+    <tr>
+      <td><label th:text="#{hostCity}"></label></td>
+      <td> <input type="text" th:field="*{hostCity}" name="hostCity"/></td>
+      <td style="color:red"><span th:if="${#fields.hasErrors('hostCity')}" th:errors="*{hostCity}" /></td>
+    </tr>
+    <tr>
+      <td><label th:text="#{hostCountry}"></label></td>
+      <td><input type="text" th:field="*{hostCountry}" name="hostCountry"/></td>
+      <td style="color:red"><span th:if="${#fields.hasErrors('hostCountry')}" th:errors="*{hostCountry}" /></td>
+    </tr>
+
+
+    <tr>
+      <td></td>
+      <td><input type="hidden" th:field="*{logo}" name="logo"/></td>
+      <td style="color:red"><span th:if="${#fields.hasErrors('hostCountry')}" th:errors="*{hostCountry}" /></td>
+    </tr>
+
+    <tr>
+      <td><input type="hidden" th:field="*{qualified}" name="qualified"/></td>
+      <td style="color:red"><span th:if="${#fields.hasErrors('qualified')}" th:errors="*{qualified}" /></td>
+    </tr>
+
+
+    <tr>
+      <td><label th:text="#{rank}"></label></td>
+      <td><input type="text" th:field="*{rank}" name="rank"/></td>
+      <td style="color:red"><span th:if="${#fields.hasErrors('rank')}" th:errors="*{rank}" /></td>
+    </tr>
+
+
+
+
+    <tr>
+      <td><input type="submit" th:value="#{edit}"></td>
+      <td><input type="reset" th:value="#{clear}"></td>
+    </tr>
+  </table>
+</form>
+
+
+
+</body>
+</html>

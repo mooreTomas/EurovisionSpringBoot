@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html th:attr="locale=${en_IE}">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title th:text="Entrants"></title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Style HTML Tables with CSS</title>
+    <link rel="stylesheet" type = "text/css" media = "all"
+          href="/css/main.css" th:ref="@{/css/main.css}" />
+</head>
+<body>
+
+<span th:text="#{lang.change}"></span>:
+<select id="locales">
+    <option value=""></option>
+    <option value="en" th:text="#{lang.en}"></option>
+    <option value="ga" th:text="#{lang.ga}"></option>
+</select>
+
+<br>
+<br>
+<br>
+<a href="viewAllEntrants" class="btn btn-primary" th:text="#{label.reset}"></a>
+<br>
+<br>
+<div class="active-row">
+    <form th:action="@{viewAllEntrants}" class="form-inline">
+        <div class="form-group mr-3">
+            <input type="text" name="countryKeyword" class="form-control form-control-sm" th:placeholder="#{placeholder.enterCountryName}">
+        </div>
+        <div class="form-group mr-3">
+            <span class="input-group-text">From</span>
+            <input type="date" class="form-control form-control-sm" id="startDate" name="startDate">
+        </div>
+        <div class="form-group mr-3">
+            <span class="input-group-text">To</span>
+            <input type="date" class="form-control form-control-sm" id="endDate" name="endDate">
+        </div>
+
+        <div class="form-group">
+            <input type="submit" th:value= "#{label.search}" class="btn btn-success btn-sm">
+        </div>
+    </form>
+</div>
+
+
+<br>
+
+<div class="active-row">
+    <form th:action="@{viewEntrantByVenueAndDates}" class="form-inline">
+        <div class="form-group mr-3">
+            <input type="text" name="artistCountry" class="form-control form-control-sm" th:placeholder="#{placeholder.enterArtistCountry}">
+        </div>
+        <div class="form-group mr-3">
+            <span class="input-group-text">From</span>
+            <input type="date" class="form-control form-control-sm" id="startDate2" name="startDate2">
+        </div>
+        <div class="form-group mr-3">
+            <span class="input-group-text">To</span>
+            <input type="date" class="form-control form-control-sm" id="endDate2" name="endDate2">
+        </div>
+        <div class="form-group mr-3">
+            <label class="form-label mr-2" for="venueName" th:text="#{label.selectAVenueName}"></label>
+            <select id="venueName" name="venueName" class="form-control form-control-sm" data-role="select-dropdown" data-profile="minimal">
+                <option value="" th:text="#{placeholder.selectVenue}"></option>
+                <option th:each="v : ${venues}" th:value="${v.name}" th:text="${v.name}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" th:value= "#{label.search}" class="btn btn-success btn-sm" />
+        </div>
+    </form>
+</div>
+
+<br>
+
+
+
+
+
+
+
+<table class = "content-table">
+    <tr class = "active-row">
+        <th style="text-align:left" th:text="#{id}"></th>
+        <th style="text-align:left"th:text="#{hostCity}"></th>
+        <th style="text-align:left"th:text="#{dateOfFinal}"></th>
+        <th style="text-align:left"th:text="#{hostCountry}"></th>
+        <th style="text-align:left"th:text="#{artist}"></th>
+        <th style="text-align:left"th:text="#{song}"></th>
+        <th style="text-align:left"th:text="#{points}"></th>
+        <th style="text-align:left"th:text="#{logo}"></th>
+
+
+
+    </tr>
+    <tr th:each="e: ${entrants}">
+
+        <td><a th:href="@{/drillDown(id=${e.id})}" class="btn btn-primary btn-xs"XSmall><span th:text="${e.id}"></span></a></td>
+        <td><span th:text="${e.hostCity}"></span></td>
+        <td><span th:text="${#dates.format(e.dateOfFinal, #messages.msg('date.format'))}"></span></td>
+        <td><span th:text="${e.hostCountry}"></span></td>
+        <td><span th:text="${e.artist}"></span></td>
+        <td><span th:text="${e.song}"></span></td>
+        <td><span th:text="${e.totalPoints}"></span></td>
+        <td> <img th:src="@{/assets/images/{logo}(logo=${e.logo})}"/> </td>
+
+
+
+        </tr>
+</table>
+
+<br>
+
+<br>
+
+
+
+<table class = "content-table">
+    <tr class = "active-row">
+        <th style="text-align:left">Id</th>
+        <th style="text-align:left">name</th>
+        <th style="text-align:left">Date of Final</th>
+
+
+
+
+    </tr>
+    <tr th:each="v: ${venue}">
+
+        <td><span th:text="${v.name}"></span></td>
+        <td><span th:text="${v.capacity}"></span></td>
+        <td><span th:text="${v.note}"></span></td>
+
+
+
+
+    </tr>
+</table>
+
+</body>
+</html>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#locales").change(function () {
+            var selectedOption = $('#locales').val();
+            if (selectedOption != ''){
+                window.location.replace('?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
